@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  db:
+    restart: always
+    image: "postgres:16"
+    entrypoint:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=pass
+      - POSTGRES_DB=neighbor
+      - PORT = 1234
+    volumes:
+      - data:/var/lib/postgresql/data
+    ports:
+      - "1234:5432"
+volumes:
+  data:
