@@ -25,14 +25,5 @@ public class User {
     @Column(name = "password", nullable = false)
     private String password;
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", role=" + role +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                '}';
-    }
 
 }

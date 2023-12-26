@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class LoginService {
 
+    @Resource
     private UserMapper userMapper;
 
     @Resource

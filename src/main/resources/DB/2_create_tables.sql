@@ -20,10 +20,10 @@ CREATE TABLE association (
                              building_id int  NOT NULL,
                              name varchar(255)  NOT NULL,
                              address varchar(255)  NOT NULL,
-                             postindex varchar(255)  NOT NULL,
+                             post_index varchar(255)  NOT NULL,
                              phone varchar(255)  NOT NULL,
                              email varchar(255)  NOT NULL,
-                             regnumber varchar(255)  NOT NULL,
+                             reg_number varchar(255)  NOT NULL,
                              CONSTRAINT id PRIMARY KEY (id)
 );
 
@@ -60,23 +60,23 @@ CREATE TABLE lift (
                       CONSTRAINT lift_pk PRIMARY KEY (id)
 );
 
--- Table: profile
-CREATE TABLE profile (
+-- Table: user
+CREATE TABLE "user" (
                          id serial  NOT NULL,
                          role_id int  NOT NULL,
                          username varchar(255)  NOT NULL,
                          password varchar(255)  NOT NULL,
-                         CONSTRAINT profile_pk PRIMARY KEY (id)
+                         CONSTRAINT user_pk PRIMARY KEY (id)
 );
 
 -- Table: resident
 CREATE TABLE resident (
                           id serial  NOT NULL,
-                          profile_id int  NOT NULL,
+                          user_id int  NOT NULL,
                           first_name varchar(255)  NOT NULL,
                           last_name varchar(255)  NOT NULL,
                           email varchar(255)  NOT NULL,
-                          telefon varchar(255)  NOT NULL,
+                          phone varchar(255)  NOT NULL,
                           birthdate date  NOT NULL,
                           status char(1)  NOT NULL,
                           CONSTRAINT resident_pk PRIMARY KEY (id)
@@ -105,6 +105,7 @@ ALTER TABLE apartment ADD CONSTRAINT apartment_building
         NOT DEFERRABLE
             INITIALLY IMMEDIATE
 ;
+
 
 -- Reference: association_building (table: association)
 ALTER TABLE association ADD CONSTRAINT association_building
@@ -138,8 +139,8 @@ ALTER TABLE lift ADD CONSTRAINT lift_building
             INITIALLY IMMEDIATE
 ;
 
--- Reference: profile_role (table: profile)
-ALTER TABLE profile ADD CONSTRAINT profile_role
+-- Reference: user_role (table: user)
+ALTER TABLE "user" ADD CONSTRAINT user_role
     FOREIGN KEY (role_id)
         REFERENCES role (id)
         NOT DEFERRABLE
@@ -162,13 +163,12 @@ ALTER TABLE resident_apartment ADD CONSTRAINT resident_apartment_resident
             INITIALLY IMMEDIATE
 ;
 
--- Reference: resident_profile (table: resident)
-ALTER TABLE resident ADD CONSTRAINT resident_profile
-    FOREIGN KEY (profile_id)
-        REFERENCES profile (id)
+-- Reference: resident_user (table: resident)
+ALTER TABLE resident ADD CONSTRAINT resident_user
+    FOREIGN KEY (user_id)
+        REFERENCES "user" (id)
         NOT DEFERRABLE
             INITIALLY IMMEDIATE
 ;
 
 -- End of file.
-

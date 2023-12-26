@@ -12,7 +12,6 @@ public class LoginController {
     @Resource
     private LoginService loginService;
 
-
     @GetMapping("/login")
     public LoginDto login(@RequestParam String username, @RequestParam String password) {
         return loginService.login(username, password);
