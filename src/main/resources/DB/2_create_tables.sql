@@ -172,3 +172,21 @@ ALTER TABLE resident ADD CONSTRAINT resident_user
 ;
 
 -- End of file.
+
+-- changed 20231228-9:52
+
+-- Добавление нового столбца "address" и "post_index" с типом данных VARCHAR(255) в таблицу "building"
+ALTER TABLE building
+    ADD COLUMN address VARCHAR(255);
+
+ALTER TABLE building
+    ADD COLUMN post_index VARCHAR(255);
+
+-- Удаление столбца "address" и "post_index" из таблицы "association"
+ALTER TABLE association
+    DROP COLUMN address;
+
+ALTER TABLE association
+    DROP COLUMN post_index;
+
+
