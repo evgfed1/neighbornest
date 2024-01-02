@@ -1,4 +1,4 @@
-package com.antevgproject.neighbornest.business.login.dto;
+package com.antevgproject.neighbornest.domain.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

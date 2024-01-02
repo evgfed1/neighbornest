@@ -35,4 +35,12 @@ public class Building {
     @Column(name = "lift", nullable = false)
     private Boolean lift = false;
 
+    @Size(max = 255)
+    @Column(name = "address")
+    private String address;
+
+    @Size(max = 255)
+    @Column(name = "post_index")
+    private String postIndex;
+
 }

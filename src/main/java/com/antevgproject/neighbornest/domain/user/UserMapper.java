@@ -1,6 +1,5 @@
 package com.antevgproject.neighbornest.domain.user;
 
-import com.antevgproject.neighbornest.business.login.dto.LoginDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;

@@ -10,10 +10,15 @@ import java.util.Optional;
 public class UserService {
 
     @Resource
+    public UserMapper userMapper;
+    @Resource
     public  UserRepository userRepository;
 
-    public User findUserBy(String username, String password) {
+    public LoginDto login(String username, String password) {
+
         Optional<User> optionalUser = userRepository.findUserBy(username, password);
-        return ValidationService.getValidUser(optionalUser);
+        User user = ValidationService.getValidUser(optionalUser);
+        return userMapper.toLoginDto(user);
     }
+
 }
