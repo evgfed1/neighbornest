@@ -9,9 +9,13 @@ INSERT INTO public.resident (id, user_id, first_name, last_name, email, phone, b
 
 INSERT INTO public.association (id, building_id, name, phone, email, reg_number) VALUES (DEFAULT, 1, 'Jupako KU', '+372 555555555', 'neighbornest@jupako.ee', 'REG12345');
 
-INSERT INTO public.building (id, date_of_build, cadastral, floors, lift, address, post_index) VALUES (DEFAULT, '2023-01-01', 12345, 5, true, 'Õismäe tee 109 - 46', '13519');
+UPDATE building
+SET address = 'Õismäe tee 109'
+WHERE id = 1;
 
-INSERT INTO public.lift (id, building_id, current_inspection, next_inspection, service_company) VALUES (DEFAULT, 1, '2023-12-21', '2024-12-21', 'KONE');
+UPDATE building
+SET post_index = '13519'
+WHERE id = 1;
 
 INSERT INTO public.consumption (id, created_by_resident_id, apartment_id, hot_water, cold_water, electricity, gas, created_at) VALUES (DEFAULT, 1, 1, (23.155), (97.341), (51.537), Null, '2023-05-30');
 INSERT INTO public.consumption (id, created_by_resident_id, apartment_id, hot_water, cold_water, electricity, gas, created_at) VALUES (DEFAULT, 2, 2, (34.429), (101.548), (42.473), Null, '2023-05-28');
