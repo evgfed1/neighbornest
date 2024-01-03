@@ -1,10 +1,9 @@
 package com.antevgproject.neighbornest.domain.user;
 
 
+import com.antevgproject.neighbornest.domain.resident.ResidentDto;
 import jakarta.annotation.Resource;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class UserController {
@@ -18,4 +17,9 @@ public class UserController {
         return userService.login(username, password);
     }
 
+
+    @PostMapping("/registration/user")
+    public void registerNewUser(@RequestBody ResidentDto residentDto){
+        userService.registerNewUser(residentDto);
+    }
 }
