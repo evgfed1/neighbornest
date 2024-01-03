@@ -16,5 +16,6 @@ public interface ResidentMapper {
     @Mapping(source = "phone", target = "phone")
     @Mapping(constant = "A", target = "status")
     Resident residentFromResidentDto(ResidentDto residentDto);
+
 }
 

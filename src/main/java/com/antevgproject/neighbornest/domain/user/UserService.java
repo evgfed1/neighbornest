@@ -38,7 +38,7 @@ public class UserService {
         user.setRole(new Role(2, "user"));
         userRepository.save(user);
         Resident resident = residentMapper.residentFromResidentDto(residentDto);
-//        resident.setStatus(ACTIVE);
+        resident.setUser(user);
         residentRepository.save(resident);
 
     }
