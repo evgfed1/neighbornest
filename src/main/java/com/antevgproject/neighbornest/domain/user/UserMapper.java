@@ -9,12 +9,16 @@ import org.mapstruct.ReportingPolicy;
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING)
 public interface UserMapper {
 
-@Mapping(source = "id", target = "userId")
-@Mapping(source = "role.name", target = "roleName")
+    @Mapping(source = "id", target = "userId")
+    @Mapping(source = "role.name", target = "roleName")
     LoginDto toLoginDto(User user);
 
 
-@Mapping(source = "userUsername", target = "username")
-@Mapping(source = "userPassword", target = "password")
+    @Mapping(source = "userUsername", target = "username")
+    @Mapping(source = "userPassword", target = "password")
     User userFromResidentDto(ResidentDto residentDto);
+
+
+    @Mapping(source = "username", target = "userUsername")
+    ValidUserDto toValidUserDto(User user);
 }

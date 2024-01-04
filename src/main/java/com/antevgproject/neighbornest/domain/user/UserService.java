@@ -1,6 +1,5 @@
 package com.antevgproject.neighbornest.domain.user;
 
-import com.antevgproject.neighbornest.domain.Status;
 import com.antevgproject.neighbornest.domain.resident.Resident;
 import com.antevgproject.neighbornest.domain.resident.ResidentDto;
 import com.antevgproject.neighbornest.domain.resident.ResidentMapper;
@@ -11,8 +10,6 @@ import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
-
-import static com.antevgproject.neighbornest.domain.Status.ACTIVE;
 
 @Service
 public class UserService {
@@ -28,7 +25,7 @@ public class UserService {
 
     public LoginDto login(String username, String password) {
 
-        Optional<User> optionalUser = userRepository.findUserBy(username, password);
+        Optional<User> optionalUser = userRepository.findUserBy(username);
         User user = ValidationService.getValidUser(optionalUser);
         return userMapper.toLoginDto(user);
     }
@@ -41,5 +38,12 @@ public class UserService {
         resident.setUser(user);
         residentRepository.save(resident);
 
+    }
+
+    public ValidUserDto compareNewUser(String username, String phone, String email) {
+        Optional<User> optionalUser = userRepository.findUserBy(username);
+        User user = ValidationService.getValidUser(optionalUser);
+
+        return userMapper.toValidUserDto(user);
     }
 }
