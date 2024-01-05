@@ -23,9 +23,9 @@ public class UserController {
         userService.registerNewUser(residentDto);
     }
 
-    @GetMapping("/registration/user")
-    public ValidUserDto compareNewUser(@RequestParam String username, @RequestParam String phone, @RequestParam String email) {
-        return userService.compareNewUser(username, phone, email);
-    }
+//    @GetMapping("/registration/user")
+//    public ValidUserDto compareNewUser(@RequestParam String username, @RequestParam String phone, @RequestParam String email) {
+//        return userService.compareNewUser(username, phone, email);
+//    }
 
 }

@@ -25,14 +25,13 @@ public class UserService {
 
     public LoginDto login(String username, String password) {
 
-        Optional<User> optionalUser = userRepository.findUserBy(username);
+        Optional<User> optionalUser = userRepository.findUserBy(username, password);
         User user = ValidationService.getValidUser(optionalUser);
         return userMapper.toLoginDto(user);
     }
 
     public void registerNewUser(ResidentDto residentDto) {
-        findByPhoneUsernameEmail(residentDto);
-
+//        findByPhoneUsernameEmail(residentDto);
 
         User user = userMapper.userFromResidentDto(residentDto);
         user.setRole(new Role(2, "user"));
@@ -43,17 +42,17 @@ public class UserService {
 
     }
 
-    private boolean findByPhoneUsernameEmail(ResidentDto residentDto) {
-        residentRepository.existByEmail(residentDto.getEmail());    //1 dejstvie
-        residentRepository.existByPhone(residentDto.getPhone());      //2 dejstvie
-        userRepository.existByUsername(residentDto.getUserUsername());   //3 dejstvie
+//    private boolean findByPhoneUsernameEmail(ResidentDto residentDto) {
+//        residentRepository.existByEmail(residentDto.getEmail());    //1 dejstvie
+//        residentRepository.existByPhone(residentDto.getPhone());      //2 dejstvie
+//        userRepository.existByUsername(residentDto.getUserUsername());   //3 dejstvie
+//        return true;
+//    }
 
-    }
-
-    public ValidUserDto compareNewUser(String username, String phone, String email) {
-        Optional<User> optionalUser = userRepository.findUserBy(username);
-        User user = ValidationService.getValidUser(optionalUser);
-
-        return userMapper.toValidUserDto(user);
-    }
+//    public ValidUserDto compareNewUser(String username, String phone, String email) {
+//        Optional<User> optionalUser = userRepository.findUserBy(username);
+//        User user = ValidationService.getValidUser(optionalUser);
+//
+//        return userMapper.toValidUserDto(user);
+//    }
 }
