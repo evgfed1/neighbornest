@@ -31,12 +31,22 @@ public class UserService {
     }
 
     public void registerNewUser(ResidentDto residentDto) {
+        findByPhoneUsernameEmail(residentDto);
+
+
         User user = userMapper.userFromResidentDto(residentDto);
         user.setRole(new Role(2, "user"));
         userRepository.save(user);
         Resident resident = residentMapper.residentFromResidentDto(residentDto);
         resident.setUser(user);
         residentRepository.save(resident);
+
+    }
+
+    private boolean findByPhoneUsernameEmail(ResidentDto residentDto) {
+        residentRepository.existByEmail(residentDto.getEmail());    //1 dejstvie
+        residentRepository.existByPhone(residentDto.getPhone());      //2 dejstvie
+        userRepository.existByUsername(residentDto.getUserUsername());   //3 dejstvie
 
     }
 
