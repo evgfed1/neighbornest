@@ -13,12 +13,8 @@ public interface UserMapper {
     @Mapping(source = "role.name", target = "roleName")
     LoginDto toLoginDto(User user);
 
-
-    @Mapping(source = "userUsername", target = "username")
     @Mapping(source = "userPassword", target = "password")
+    @Mapping(source = "userUsername", target = "username")
     User userFromResidentDto(ResidentDto residentDto);
 
-
-    @Mapping(source = "username", target = "userUsername")
-    ValidUserDto toValidUserDto(User user);
 }

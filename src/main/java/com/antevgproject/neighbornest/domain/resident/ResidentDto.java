@@ -33,5 +33,5 @@ public class ResidentDto implements Serializable {
     private String phone;
     @NotNull
     private LocalDate birthdate;
-//
+
 }

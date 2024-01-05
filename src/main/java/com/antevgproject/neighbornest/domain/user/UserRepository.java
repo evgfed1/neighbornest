@@ -10,7 +10,4 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     @Query("select u from User u where u.username = ?1 and u.password = ?2")
     Optional<User> findUserBy(String username, String password);
 
-
-//    @Query("select (count(u) > 0) from User u where upper (u.username) like upper(?1)")
-//    boolean existByUsername(String username);
 }
