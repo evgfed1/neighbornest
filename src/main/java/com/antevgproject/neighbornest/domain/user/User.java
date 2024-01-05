@@ -25,5 +25,11 @@ public class User {
     @Column(name = "password", nullable = false)
     private String password;
 
-
+    @Override
+    public String toString() {
+        return getClass().getSimpleName() + "(" +
+                "id = " + id + ", " +
+                "username = " + username + ", " +
+                "password = " + password + ")";
+    }
 }
