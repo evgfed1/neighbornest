@@ -35,9 +35,9 @@ public class ValidationService {
         }
     }
 
-    public static void isExistByPhoneAndEmail(Optional<Resident> optionalResident) {
-        if (optionalResident.isPresent()) {
-            throw new GenericException("Phone or email already exists", "Choose another email or phone");
+    public static void isExistByPhone(boolean existByPhone) {
+        if (existByPhone) {
+            throw new GenericException("Phone already exists", "Choose another phone");
         }
     }
 

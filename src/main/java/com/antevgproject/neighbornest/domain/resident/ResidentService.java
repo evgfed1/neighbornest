@@ -5,8 +5,6 @@ import com.antevgproject.neighbornest.infrastructure.validation.ValidationServic
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Service
 public class ResidentService {
 
@@ -24,9 +22,19 @@ public class ResidentService {
 
     }
 
-    public boolean validateByPhoneAndEmail(ResidentDto residentDto) {
-        Optional<Resident> residentOptional = residentRepository.findByPhoneOrEmail(residentDto.getEmail(), residentDto.getPhone());
-        ValidationService.isExistByPhoneAndEmail(residentOptional);
-        return true;
+    public void validateByPhoneAndEmail(ResidentDto residentDto) {
+        validateByPhone(residentDto.getPhone());
+        validateByEmail(residentDto.getEmail());
     }
+
+    private void validateByPhone(String phone) {
+        boolean existByPhone = residentRepository.existByPhone(phone);
+        ValidationService.isExistByPhone(existByPhone);
+    }
+
+    private void validateByEmail(String email) {
+        boolean existByPhone = residentRepository.existByEmail(email);
+        ValidationService.isExistByPhone(existByPhone);
+    }
+
 }
