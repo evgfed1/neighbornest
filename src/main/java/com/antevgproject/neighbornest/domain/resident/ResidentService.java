@@ -33,8 +33,8 @@ public class ResidentService {
     }
 
     private void validateByEmail(String email) {
-        boolean existByPhone = residentRepository.existByEmail(email);
-        ValidationService.isExistByPhone(existByPhone);
+        boolean existByEmail = residentRepository.existByEmail(email);
+        ValidationService.isExistByEmail(existByEmail);
     }
 
 }

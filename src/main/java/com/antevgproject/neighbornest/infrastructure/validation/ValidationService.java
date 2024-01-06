@@ -41,4 +41,10 @@ public class ValidationService {
         }
     }
 
+    public static void isExistByEmail(boolean existByEmail) {
+        if (existByEmail) {
+            throw new GenericException("Email already exists", "Choose another email");
+        }
+    }
+
 }
