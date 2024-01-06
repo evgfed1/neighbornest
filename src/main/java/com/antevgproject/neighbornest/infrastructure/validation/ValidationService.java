@@ -1,5 +1,6 @@
 package com.antevgproject.neighbornest.infrastructure.validation;
 
+import com.antevgproject.neighbornest.domain.resident.Resident;
 import com.antevgproject.neighbornest.domain.user.User;
 import com.antevgproject.neighbornest.infrastructure.exception.BusinessException;
 import com.antevgproject.neighbornest.infrastructure.exception.GenericException;
@@ -31,6 +32,12 @@ public class ValidationService {
     public static void isExistByUsername(Optional<User> optionalUser) {
         if (optionalUser.isPresent()) {
             throw new GenericException("Username already exists", "Choose another username");
+        }
+    }
+
+    public static void isExistByPhoneAndEmail(Optional<Resident> optionalResident) {
+        if (optionalResident.isPresent()) {
+            throw new GenericException("Phone or email already exists", "Choose another email or phone");
         }
     }
 

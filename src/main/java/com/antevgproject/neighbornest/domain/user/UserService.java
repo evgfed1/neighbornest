@@ -32,12 +32,17 @@ public class UserService {
     public void registerNewUser(ResidentDto residentDto) {
 
         Optional<User> optionalUser = userRepository.findByUsername(residentDto.getUserUsername());
-        ValidationService.isExistByUsername(optionalUser);
+        validateResidentDto(residentDto, optionalUser);
         User user = userMapper.userFromResidentDto(residentDto);
         user.setRole(new Role(2, "user"));
         userRepository.save(user);
         residentService.registerNewResident(residentDto, user);
 
+    }
+
+    private void validateResidentDto(ResidentDto residentDto, Optional<User> optionalUser) {
+        ValidationService.isExistByUsername(optionalUser);
+        residentService.validateByPhoneAndEmail(residentDto);
     }
 
 }

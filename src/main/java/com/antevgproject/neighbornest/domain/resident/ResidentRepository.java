@@ -3,6 +3,8 @@ package com.antevgproject.neighbornest.domain.resident;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
+import java.util.Optional;
+
 
 public interface ResidentRepository extends JpaRepository<Resident, Integer> {
 
@@ -13,4 +15,6 @@ public interface ResidentRepository extends JpaRepository<Resident, Integer> {
     @Query("select (count(r) > 0) from Resident r where upper (r.phone) like upper(?1)")
     boolean existByPhone(String phone);
 
+    @Query("select r from Resident r where r.email = ?1 and r.phone = ?2")
+    Optional<Resident> findByPhoneOrEmail(String email, String phone);
 }
