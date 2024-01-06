@@ -1,7 +1,9 @@
 package com.antevgproject.neighbornest.infrastructure.exception;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
+@EqualsAndHashCode(callSuper = true)
 @Data
 public class GenericException extends RuntimeException{
 
