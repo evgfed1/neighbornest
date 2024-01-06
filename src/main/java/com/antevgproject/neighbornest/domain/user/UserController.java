@@ -6,6 +6,7 @@ import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("/user")
 public class UserController {
     @Resource
     private UserService userService;
@@ -15,9 +16,10 @@ public class UserController {
         return userService.login(username, password);
     }
 
-    @PostMapping("/registration/user")
+    @PostMapping("/registration")
     public void registerNewUser(@RequestBody ResidentDto residentDto){
         userService.registerNewUser(residentDto);
     }
 
 }
+
