@@ -1,6 +1,5 @@
 package com.antevgproject.neighbornest.infrastructure.validation;
 
-import com.antevgproject.neighbornest.domain.resident.Resident;
 import com.antevgproject.neighbornest.domain.user.User;
 import com.antevgproject.neighbornest.infrastructure.exception.BusinessException;
 import com.antevgproject.neighbornest.infrastructure.exception.GenericException;
@@ -47,4 +46,27 @@ public class ValidationService {
         }
     }
 
+    public static void isExistByName(boolean existByName) {
+        if (existByName) {
+            throw new GenericException("Name already exists", "Choose another name");
+        }
+    }
+
+    public static void isExistByRegNumber(boolean existByRegNumber) {
+        if (existByRegNumber){
+            throw new GenericException("Registration number already exists", "Choose another number");
+        }
+    }
+
+    public static void isExistByAddress(boolean existByAddress) {
+        if (existByAddress){
+            throw new GenericException("Address already exists", "Choose another address");
+        }
+    }
+
+    public static void isExistByCadastral(boolean existByCadastral) {
+        if (existByCadastral){
+            throw new GenericException("Cadastral already exists", "Choose another cadastral");
+        }
+    }
 }
