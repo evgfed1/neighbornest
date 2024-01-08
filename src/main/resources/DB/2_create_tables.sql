@@ -189,4 +189,28 @@ ALTER TABLE association
 ALTER TABLE association
     DROP COLUMN post_index;
 
+-- changed 20240108-19:05
+--added new relation table resident_association
 
+CREATE TABLE resident_association (
+                                      id serial  NOT NULL,
+                                      association_id int  NOT NULL,
+                                      resident_id int  NOT NULL,
+                                      CONSTRAINT resident_association_pk PRIMARY KEY (id)
+);
+
+-- Reference: resident_association_association (table: resident_association):)
+ALTER TABLE resident_association ADD CONSTRAINT resident_association_association
+    FOREIGN KEY (association_id)
+        REFERENCES association (id)
+        NOT DEFERRABLE
+            INITIALLY IMMEDIATE
+;
+
+-- Reference: resident_association_resident (table: resident_association)
+ALTER TABLE resident_association ADD CONSTRAINT resident_association_resident
+    FOREIGN KEY (resident_id)
+        REFERENCES resident (id)
+        NOT DEFERRABLE
+            INITIALLY IMMEDIATE
+;
