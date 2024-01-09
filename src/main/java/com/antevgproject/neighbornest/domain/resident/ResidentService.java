@@ -22,6 +22,10 @@ public class ResidentService {
 
     }
 
+    public Resident findByUserId(Integer userId) {
+        return residentRepository.findResidentByUserId(userId);
+    }
+
     public void validateByPhoneAndEmail(ResidentDto residentDto) {
         validateByPhone(residentDto.getPhone());
         validateByEmail(residentDto.getEmail());

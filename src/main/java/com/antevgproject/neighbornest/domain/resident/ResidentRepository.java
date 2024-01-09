@@ -14,4 +14,6 @@ public interface ResidentRepository extends JpaRepository<Resident, Integer> {
     @Query("select (count(r) > 0) from Resident r where upper (r.phone) like upper(?1)")
     boolean existByPhone(String phone);
 
+    Resident findResidentByUserId(Integer userId);
+
 }

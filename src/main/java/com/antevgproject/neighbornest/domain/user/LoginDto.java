@@ -10,6 +10,10 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 public class LoginDto implements Serializable {
-    Integer userId;
-    String roleName;
+
+    private Integer userId;
+    private String roleName;
+    private String firstName;
+    private String lastName;
+
 }

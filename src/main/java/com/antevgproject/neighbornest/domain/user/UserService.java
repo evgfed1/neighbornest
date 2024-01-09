@@ -1,5 +1,6 @@
 package com.antevgproject.neighbornest.domain.user;
 
+import com.antevgproject.neighbornest.domain.resident.Resident;
 import com.antevgproject.neighbornest.domain.resident.ResidentDto;
 import com.antevgproject.neighbornest.domain.resident.ResidentService;
 import com.antevgproject.neighbornest.domain.user.role.Role;
@@ -26,7 +27,12 @@ public class UserService {
 
         Optional<User> optionalUser = userRepository.findByUsernameAndPassword(username, password);
         User user = ValidationService.getValidUser(optionalUser);
-        return userMapper.toLoginDto(user);
+        Resident resident = residentService.findByUserId(user.getId());
+        LoginDto loginDto = userMapper.toLoginDto(user);
+        loginDto.setFirstName(resident.getFirstName());
+        loginDto.setLastName(resident.getLastName());
+
+        return loginDto;
     }
 
     public void registerNewUser(ResidentDto residentDto) {
