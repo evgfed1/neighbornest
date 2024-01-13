@@ -31,6 +31,9 @@ public class AssociationService {
         validateByName(associationDto.getName());
         validateByRegNumber(associationDto.getRegNumber());
         validateByEmail(associationDto.getEmail());
+        
+//        associationRepository.someMethod(associationDto.getName(), associationDto.getEmail(), associationDto.getRegNumber());
+//        iz repo berem list i ego uzhe po otdeljnosti validiruem, tk chem menshe zaprosov v DB tem luchwe.
     }
 
     private void validateByName(String name) {
