@@ -17,5 +17,4 @@ public class AssociationController {
     public void registerNewAssociation(@RequestBody AssociationDto associationDto) {
         associationService.registerNewAssociation(associationDto);
     }
-
 }
