@@ -35,7 +35,7 @@ public class UserService {
         return loginDto;
     }
 
-    public void registerNewUser(ResidentDto residentDto) {
+    public LoginDto registerNewUser(ResidentDto residentDto) {
 
         Optional<User> optionalUser = userRepository.findByUsername(residentDto.getUserUsername());
         validateResidentDto(residentDto, optionalUser);
@@ -43,7 +43,15 @@ public class UserService {
         user.setRole(new Role(2, "user"));
         userRepository.save(user);
         residentService.registerNewResident(residentDto, user);
+        return getLoginDto(user);
+    }
 
+    private LoginDto getLoginDto(User user) {
+        LoginDto loginDto = userMapper.toLoginDto(user);
+        Resident resident = residentService.findByUserId(user.getId());
+        loginDto.setFirstName(resident.getFirstName());
+        loginDto.setLastName(resident.getLastName());
+        return loginDto;
     }
 
     private void validateResidentDto(ResidentDto residentDto, Optional<User> optionalUser) {

@@ -17,9 +17,8 @@ public class UserController {
     }
 
     @PostMapping("/registration")
-    public void registerNewUser(@RequestBody ResidentDto residentDto){
-        userService.registerNewUser(residentDto);
+    public LoginDto registerNewUser(@RequestBody ResidentDto residentDto){
+        return userService.registerNewUser(residentDto);
     }
-
 }
 
