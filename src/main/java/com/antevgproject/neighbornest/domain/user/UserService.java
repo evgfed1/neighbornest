@@ -58,5 +58,4 @@ public class UserService {
         ValidationService.isExistByUsername(optionalUser);
         residentService.validateByPhoneAndEmail(residentDto);
     }
-
 }
