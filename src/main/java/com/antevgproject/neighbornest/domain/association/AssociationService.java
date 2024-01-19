@@ -31,6 +31,8 @@ public class AssociationService {
         validateByName(associationDto.getName());
         validateByRegNumber(associationDto.getRegNumber());
         validateByEmail(associationDto.getEmail());
+        validateByPhone(associationDto.getPhone());
+
         
 //        associationRepository.someMethod(associationDto.getName(), associationDto.getEmail(), associationDto.getRegNumber());
 //        iz repo berem list i ego uzhe po otdeljnosti validiruem, tk chem menshe zaprosov v DB tem luchwe.
@@ -49,6 +51,11 @@ public class AssociationService {
     private void validateByEmail(String email) {
         boolean existByEmail = associationRepository.existByEmail(email);
         ValidationService.isExistByEmail(existByEmail);
+    }
+
+    private void validateByPhone(String phone) {
+        boolean existByPhone = associationRepository.existByPhone(phone);
+        ValidationService.isExistByPhone(existByPhone);
     }
 
 }

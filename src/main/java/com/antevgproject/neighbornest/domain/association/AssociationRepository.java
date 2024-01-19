@@ -18,8 +18,11 @@ public interface AssociationRepository extends JpaRepository<Association, Intege
     @Query("select (count(a) > 0) from Association a where upper(a.email) = upper(?1)")
     boolean existByEmail(String email);
 
-    @Query("""
-            select a from Association a
-            where upper(a.name) = upper(?1) and upper(a.email) = upper(?2) and upper(a.regNumber) = upper(?3)""")
-    List<Association> someMethod(String name, String email, String regNumber);
+    @Query("select (count(a) > 0) from Association a where a.phone = ?1")
+    boolean existByPhone(String phone);
+
+//    @Query("""
+//            select a from Association a
+//            where upper(a.name) = upper(?1) and upper(a.email) = upper(?2) and upper(a.regNumber) = upper(?3)""")
+//    List<Association> someMethod(String name, String email, String regNumber);
 }
