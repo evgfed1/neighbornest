@@ -23,6 +23,7 @@ public class ResidentService {
     }
 
     public Resident findByUserId(Integer userId) {
+
         return residentRepository.findResidentByUserId(userId);
     }
 

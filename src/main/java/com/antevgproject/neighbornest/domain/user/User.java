@@ -28,7 +28,7 @@ public class User {
     @Override
     public String toString() {
         return getClass().getSimpleName() + "(" +
-                "id = " + id + ", " +
+                "newsId = " + id + ", " +
                 "username = " + username + ", " +
                 "password = " + password + ")";
     }

@@ -214,3 +214,24 @@ ALTER TABLE resident_association ADD CONSTRAINT resident_association_resident
         NOT DEFERRABLE
             INITIALLY IMMEDIATE
 ;
+
+-- changed 20240119-10:45
+-- added new relation table news
+
+CREATE TABLE news
+(
+    id           serial       NOT NULL,
+    user_id      int          NOT NULL,
+    title        varchar(255) NOT NULL,
+    content      text         NOT NULL,
+    publish_date timestamp    NOT NULL,
+    status       char(1)      NOT NULL,
+    CONSTRAINT news_pk PRIMARY KEY (id)
+);
+
+ALTER TABLE news
+    ADD CONSTRAINT news_user
+        FOREIGN KEY (user_id)
+            REFERENCES "user" (id)
+            NOT DEFERRABLE
+                INITIALLY IMMEDIATE;
