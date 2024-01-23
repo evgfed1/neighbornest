@@ -6,7 +6,8 @@ import lombok.Getter;
 public enum Error {
 
     INCORRECT_CREDENTIALS("Wrong username or password",111),
-    USERNAME_ALREADY_EXIST("Username is already taken",222);
+    USERNAME_ALREADY_EXIST("Username is already taken",222),
+    CONSUMPTIONVALUES_ALREADY_PROVIDED("Consumption data is already provided", 333);
 
     private final String message;
     private final Integer errorCode;

@@ -23,4 +23,12 @@ public class ConsumptionService {
 
         return consumptionDto;
     }
+
+    public void saveConsumptionValues(ConsumptionDto consumptionDto) {
+
+        Optional<Consumption> optionalConsumption = consumptionRepository.findByUserIdAndDate(consumptionDto.getUserId(), consumptionDto.getCreatedAt());
+        Consumption consumption = ValidationService.getValidConsumptionByDate(optionalConsumption);
+
+
+    }
 }
