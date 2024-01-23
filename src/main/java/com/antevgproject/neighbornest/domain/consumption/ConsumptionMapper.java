@@ -4,13 +4,14 @@ import org.mapstruct.*;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING)
 public interface ConsumptionMapper {
-    @Mapping(source = "createdByResidentUserId", target = "user.id")
-    Consumption toEntity(ConsumptionDto1 consumptionDto1);
 
-    @Mapping(source = "user.id", target = "createdByResidentUserId")
-    ConsumptionDto1 toDto(Consumption consumption);
+    @Mapping(source = "coldWater", target = "coldWater")
+    @Mapping(source = "hotWater", target = "hotWater")
+    @Mapping(source = "gas", target = "gas")
+    @Mapping(source = "electricity", target = "electricity")
+//    @Mapping(source = "createdAt", target = "createdAt")
+    ConsumptionDto toConsumptionDto(Consumption consumption);
 
-    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-    @Mapping(source = "createdByResidentUserId", target = "user.id")
-    Consumption partialUpdate(ConsumptionDto1 consumptionDto1, @MappingTarget Consumption consumption);
+//    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+//    Consumption partialUpdate(ConsumptionDto consumptionDto, @MappingTarget Consumption consumption);
 }

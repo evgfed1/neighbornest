@@ -23,7 +23,7 @@ public class UserService {
     public ResidentService residentService;
 
 
-    public LoginDto  login(String username, String password) {
+    public LoginDto login(String username, String password) {
 
         Optional<User> optionalUser = userRepository.findByUsernameAndPassword(username, password);
         User user = ValidationService.getValidUser(optionalUser);

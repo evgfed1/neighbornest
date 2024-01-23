@@ -1,5 +1,6 @@
 package com.antevgproject.neighbornest.infrastructure.validation;
 
+import com.antevgproject.neighbornest.domain.consumption.Consumption;
 import com.antevgproject.neighbornest.domain.user.User;
 import com.antevgproject.neighbornest.infrastructure.exception.BusinessException;
 import com.antevgproject.neighbornest.infrastructure.exception.GenericException;
@@ -68,5 +69,12 @@ public class ValidationService {
         if (existByCadastral){
             throw new GenericException("Cadastral already exists", "Choose another cadastral");
         }
+    }
+
+    public static Consumption getValidConsumption(Optional<Consumption> optionalConsumption) {
+        if (optionalConsumption.isEmpty()) {
+            throw new BusinessException(USERNAME_ALREADY_EXIST.getMessage(), USERNAME_ALREADY_EXIST.getErrorCode());
+        }
+        return optionalConsumption.get();
     }
 }

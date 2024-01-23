@@ -13,8 +13,8 @@ public class ConsumptionController {
     @Resource
     private ConsumptionService consumptionService;
 
-    @GetMapping("/consumption")
-    public ConsumptionDto getConsumptionValues (@RequestParam int userId) {
+    @GetMapping("/period")
+    public ConsumptionDto getConsumptionValues (@RequestParam Integer userId) {
         return consumptionService.getConsumptionValues(userId);
     }
 

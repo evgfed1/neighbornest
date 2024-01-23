@@ -1,17 +1,26 @@
 package com.antevgproject.neighbornest.domain.consumption;
 
+import com.antevgproject.neighbornest.infrastructure.validation.ValidationService;
+import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
-
 public class ConsumptionService {
-    public ConsumptionDto getConsumptionValues(int userId) {
 
-//        1) vernutj residentId po userId
+    @Resource
+    public ConsumptionRepository consumptionRepository;
+    @Resource
+    public ConsumptionMapper consumptionMapper;
 
 
-//        2) vernutj consumptionId cherez residentId
-//        3) vernutj consumption na fron-end
-        Consumption consumption = consumptionMapper.toConsumptionDto(consumption);
+    public ConsumptionDto getConsumptionValues(Integer userId) {
+
+        Optional<Consumption> optionalConsumption = consumptionRepository.findByUserId(userId);
+        Consumption consumption = ValidationService.getValidConsumption(optionalConsumption);
+        ConsumptionDto consumptionDto = consumptionMapper.toConsumptionDto(consumption);
+
+        return consumptionDto;
     }
 }
