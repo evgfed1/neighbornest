@@ -13,5 +13,6 @@ public interface NewsMapper {
     @Mapping(source = "publishDate", target = "publishDate")
     @Mapping(source = "title", target = "title")
     @Mapping(constant = "A", target = "status")
+    @Mapping(source = "eventDate", target = "eventDate")
     News newsFromNewsDTO(NewsDTO newsDTO);
 }

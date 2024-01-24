@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.Instant;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -45,15 +46,20 @@ public class News {
     @Column(name = "status", nullable = false, length = Integer.MAX_VALUE)
     private String status;
 
+    @NotNull
+    @Column(name = "event_date", nullable = false)
+    private LocalDate eventDate;
+
     @Override
     public String toString() {
         return "News{" +
-                "newsId=" + id +
+                "id=" + id +
                 ", user=" + user +
                 ", title='" + title + '\'' +
                 ", content='" + content + '\'' +
                 ", publishDate=" + publishDate +
                 ", status='" + status + '\'' +
+                ", eventDate=" + eventDate +
                 '}';
     }
 }

@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.Instant;
+import java.time.LocalDate;
 
 @Data
 @AllArgsConstructor
@@ -15,6 +16,7 @@ public class NewsDTO {
     private String content;
     private Instant publishDate;
     private String status;
+    private LocalDate eventDate;
 
     @Override
     public String toString() {
@@ -24,6 +26,7 @@ public class NewsDTO {
                 ", content='" + content + '\'' +
                 ", publishDate=" + publishDate +
                 ", status='" + status + '\'' +
+                ", eventDate='" + eventDate + '\'' +
                 '}';
     }
 }
