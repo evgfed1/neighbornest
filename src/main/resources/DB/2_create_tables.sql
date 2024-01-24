@@ -235,3 +235,21 @@ ALTER TABLE news
             REFERENCES "user" (id)
             NOT DEFERRABLE
                 INITIALLY IMMEDIATE;
+
+-- changed 20240124-11:33
+-- added new column(event_date) in news table
+
+ALTER TABLE news
+    ADD COLUMN event_date DATE;
+
+-- added not null constraint into event_date column
+
+ALTER TABLE news
+    ALTER COLUMN event_date SET NOT NULL;
+
+-- type of data has been changed in the table (news) column (publish_date)(timestamp to localDate)
+
+-- Assuming your current column is of type TIMESTAMP
+ALTER TABLE news
+    ALTER COLUMN publish_date TYPE DATE;
+
