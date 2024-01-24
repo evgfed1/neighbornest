@@ -17,3 +17,11 @@ public class NewsController {
         return ResponseEntity.ok("News created successfully");
     }
 }
+//         {
+//        "userId": 0,
+//        "title": "string",
+//        "content": "string",
+//        "publishDate": "2024-01-24T15:50:37.579Z",
+//        "status": "string",
+//        "eventDate": "2024-01-24"
+//        }
