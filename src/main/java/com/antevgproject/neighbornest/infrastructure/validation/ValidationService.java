@@ -1,13 +1,13 @@
 package com.antevgproject.neighbornest.infrastructure.validation;
 
+import com.antevgproject.neighbornest.domain.consumption.Consumption;
 import com.antevgproject.neighbornest.domain.user.User;
 import com.antevgproject.neighbornest.infrastructure.exception.BusinessException;
 import com.antevgproject.neighbornest.infrastructure.exception.GenericException;
 
 import java.util.Optional;
 
-import static com.antevgproject.neighbornest.infrastructure.validation.Error.INCORRECT_CREDENTIALS;
-import static com.antevgproject.neighbornest.infrastructure.validation.Error.USERNAME_ALREADY_EXIST;
+import static com.antevgproject.neighbornest.infrastructure.validation.Error.*;
 
 
 public class ValidationService {
@@ -68,5 +68,19 @@ public class ValidationService {
         if (existByCadastral){
             throw new GenericException("Cadastral already exists", "Choose another cadastral");
         }
+    }
+
+    public static Consumption getValidConsumption(Optional<Consumption> optionalConsumption) {
+        if (optionalConsumption.isEmpty()) {
+            throw new BusinessException(USERNAME_ALREADY_EXIST.getMessage(), USERNAME_ALREADY_EXIST.getErrorCode());
+        }
+        return optionalConsumption.get();
+    }
+
+    public static Consumption getValidConsumptionByDate(Optional<Consumption> optionalConsumption) {
+        if (optionalConsumption.isEmpty()) {
+            throw new BusinessException(CONSUMPTIONVALUES_ALREADY_PROVIDED.getMessage(), CONSUMPTIONVALUES_ALREADY_PROVIDED.getErrorCode());
+        }
+        return optionalConsumption.get();
     }
 }
