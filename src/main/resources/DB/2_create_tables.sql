@@ -253,3 +253,34 @@ ALTER TABLE news
 ALTER TABLE news
     ALTER COLUMN publish_date TYPE DATE;
 
+
+-- changed 2024-01-25 14:02
+-- add column role_id to table resident_association
+
+ALTER TABLE resident_association
+    ADD COLUMN role_id int NOT NULL ;
+
+ALTER TABLE resident_association
+    ADD CONSTRAINT resident_association_role
+        FOREIGN KEY (role_id)
+            REFERENCES role (id)
+            NOT DEFERRABLE
+                INITIALLY IMMEDIATE;
+
+-- changed 2024-01-25 14:16
+-- add column role_id to table resident_apartment
+
+ALTER TABLE resident_apartment
+    ADD COLUMN role_id int;
+
+ALTER TABLE resident_apartment
+    ADD CONSTRAINT resident_apartment_role
+        FOREIGN KEY (role_id)
+            REFERENCES role (id)
+            NOT DEFERRABLE
+                INITIALLY IMMEDIATE;
+
+-- set role_id in resident_apartment table is NOT NULL
+
+ALTER TABLE resident_apartment
+    ALTER COLUMN role_id SET NOT NULL;

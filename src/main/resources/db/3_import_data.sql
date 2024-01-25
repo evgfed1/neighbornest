@@ -22,3 +22,30 @@ UPDATE building
 SET post_index = '13519'
 WHERE id = 1;
 
+
+
+-- changed 2024-01-25 13:53
+--add new roleName to roleTable,  1) roleName - moderator  2) roleName - owner  3) roleName - tenant
+
+INSERT INTO role (id, name) VALUES (DEFAULT, 'moderator');
+INSERT INTO role (id, name) VALUES (DEFAULT, 'owner');
+INSERT INTO role (id, name) VALUES (DEFAULT, 'tenant');
+
+-- changed 2024-01-25 14:22
+-- import roleNames to residents i their apartments
+
+UPDATE resident_apartment
+SET role_id = 1
+WHERE id = 1;
+
+UPDATE resident_apartment
+SET role_id = 1
+WHERE id = 2;
+
+UPDATE resident_apartment
+SET role_id = 2
+WHERE id = 4;
+
+UPDATE resident_apartment
+SET role_id = 4
+WHERE id = 5;
