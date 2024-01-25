@@ -49,3 +49,4 @@ WHERE id = 4;
 UPDATE resident_apartment
 SET role_id = 4
 WHERE id = 5;
+
