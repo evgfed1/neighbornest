@@ -258,7 +258,7 @@ ALTER TABLE news
 -- add column role_id to table resident_association
 
 ALTER TABLE resident_association
-    ADD COLUMN role_id int NOT NULL ;
+    ADD COLUMN role_id int;
 
 ALTER TABLE resident_association
     ADD CONSTRAINT resident_association_role
