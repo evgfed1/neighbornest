@@ -19,9 +19,8 @@ public class ConsumptionService {
 
         Optional<Consumption> optionalConsumption = consumptionRepository.findByUserId(userId);
         Consumption consumption = ValidationService.getValidConsumption(optionalConsumption);
-        ConsumptionDto consumptionDto = consumptionMapper.toConsumptionDto(consumption);
 
-        return consumptionDto;
+        return consumptionMapper.toConsumptionDto(consumption);
     }
 
     public void saveConsumptionValues(ConsumptionDto consumptionDto) {
