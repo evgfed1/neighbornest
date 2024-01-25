@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.Instant;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -48,7 +49,7 @@ public class News {
 
     @NotNull
     @Column(name = "event_date", nullable = false)
-    private Instant eventDate;
+    private LocalDate eventDate;
 
     @Override
     public String toString() {
