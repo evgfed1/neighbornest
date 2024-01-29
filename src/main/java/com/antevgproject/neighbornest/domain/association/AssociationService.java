@@ -35,7 +35,7 @@ public class AssociationService {
         validateByEmail(associationDto.getEmail());
         validateByPhone(associationDto.getPhone());
 
-        
+
 //        associationRepository.someMethod(associationDto.getName(), associationDto.getEmail(), associationDto.getRegNumber());
 //        iz repo berem list i ego uzhe po otdeljnosti validiruem, tk chem menshe zaprosov v DB tem luchwe.
     }
@@ -60,7 +60,9 @@ public class AssociationService {
         ValidationService.isExistByPhone(existByPhone);
     }
 
-    public List<Association> getAvailableAssociations(String status) {
-        return associationRepository.findAllAssociationsByStatus(status);
+
+    public List<ActiveAssociationsDto> getActiveAssociations() {
+        List<Association> associationList = associationRepository.findAllActiveAssociations("A");
+        return associationMapper.toDtoTest(associationList);
     }
 }

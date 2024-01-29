@@ -1,9 +1,8 @@
 package com.antevgproject.neighbornest.domain.association;
 
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.MappingConstants;
-import org.mapstruct.ReportingPolicy;
+import org.mapstruct.*;
+
+import java.util.List;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = MappingConstants.ComponentModel.SPRING)
 public interface AssociationMapper {
@@ -12,4 +11,6 @@ public interface AssociationMapper {
     @Mapping(constant = "A", target = "status")
     Association associationFromAssociationDto(AssociationDto associationDto);
 
+
+    List<ActiveAssociationsDto> toDtoTest(List<Association> associationList);
 }

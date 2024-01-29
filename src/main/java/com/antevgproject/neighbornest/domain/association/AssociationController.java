@@ -18,8 +18,8 @@ public class AssociationController {
     }
 
     @GetMapping("/search")
-    public List<Association> getAllAvailableAssociations(String status) {
-        return associationService.getAvailableAssociations(status);
+    public List<ActiveAssociationsDto> getAllActiveAssociations() {
+        return associationService.getActiveAssociations();
     }
 }
 
