@@ -6,6 +6,8 @@ import com.antevgproject.neighbornest.infrastructure.validation.ValidationServic
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class AssociationService {
 
@@ -58,4 +60,7 @@ public class AssociationService {
         ValidationService.isExistByPhone(existByPhone);
     }
 
+    public List<Association> getAvailableAssociations(String status) {
+        return associationRepository.findAllAssociationsByStatus(status);
+    }
 }

@@ -7,8 +7,6 @@ import java.util.List;
 
 public interface AssociationRepository extends JpaRepository<Association, Integer> {
 
-
-
     @Query("select (count(a) > 0) from Association a where upper(a.name) = upper(?1)")
     boolean existByName(String name);
 
@@ -21,6 +19,8 @@ public interface AssociationRepository extends JpaRepository<Association, Intege
     @Query("select (count(a) > 0) from Association a where a.phone = ?1")
     boolean existByPhone(String phone);
 
+    @Query("select a from Association a where upper(a.status) = upper(?1)")
+    List<Association> findAllAssociationsByStatus(String status);
 //    @Query("""
 //            select a from Association a
 //            where upper(a.name) = upper(?1) and upper(a.email) = upper(?2) and upper(a.regNumber) = upper(?3)""")

@@ -9,6 +9,7 @@ import org.mapstruct.ReportingPolicy;
 public interface AssociationMapper {
 
     @Mapping(source = "regNumber", target = "regNumber")
+    @Mapping(constant = "A", target = "status")
     Association associationFromAssociationDto(AssociationDto associationDto);
 
 }

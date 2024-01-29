@@ -34,4 +34,5 @@ public class AssociationDto implements Serializable {
     @NotNull
     @Size(max = 255)
     private String regNumber;
+    private String status;
 }
