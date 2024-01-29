@@ -284,3 +284,24 @@ ALTER TABLE resident_apartment
 
 ALTER TABLE resident_apartment
     ALTER COLUMN role_id SET NOT NULL;
+
+-- changed 2024-01-29 10:30
+-- add new column(status) into a table association
+
+ALTER TABLE association
+    ADD COLUMN status char;
+
+-- update the status in the 'association' table for multiple associations
+
+UPDATE association
+SET status = 'A'
+WHERE id BETWEEN 1 AND 20;
+
+-- set status in association table is NOT NULL
+
+ALTER TABLE association
+    ALTER COLUMN status SET NOT NULL;
+
+UPDATE association
+SET status = 'D'
+WHERE id BETWEEN 2 AND 18;
