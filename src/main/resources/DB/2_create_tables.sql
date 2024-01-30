@@ -304,4 +304,4 @@ ALTER TABLE association
 
 UPDATE association
 SET status = 'D'
-WHERE id BETWEEN 2 AND 18;
+WHERE id BETWEEN 4 AND 18;

@@ -12,5 +12,5 @@ public interface AssociationMapper {
     Association associationFromAssociationDto(AssociationDto associationDto);
 
 
-    List<ActiveAssociationsDto> toDtoTest(List<Association> associationList);
+    List<ActiveAssociationsDto> toActiveAssociationDto(List<Association> associationList);
 }

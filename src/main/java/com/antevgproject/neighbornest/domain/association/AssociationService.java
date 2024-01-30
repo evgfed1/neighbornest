@@ -63,6 +63,6 @@ public class AssociationService {
 
     public List<ActiveAssociationsDto> getActiveAssociations() {
         List<Association> associationList = associationRepository.findAllActiveAssociations("A");
-        return associationMapper.toDtoTest(associationList);
+        return associationMapper.toActiveAssociationDto(associationList);
     }
 }
