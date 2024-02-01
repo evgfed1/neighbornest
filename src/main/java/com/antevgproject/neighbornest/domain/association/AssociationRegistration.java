@@ -15,7 +15,7 @@ import java.time.LocalDate;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AssociationDto implements Serializable {
+public class AssociationRegistration implements Serializable {
     private LocalDate buildingDateOfBuild;
     private String buildingCadastral;
     private Integer buildingFloors;
@@ -34,4 +34,5 @@ public class AssociationDto implements Serializable {
     @NotNull
     @Size(max = 255)
     private String regNumber;
+    private int userId;
 }

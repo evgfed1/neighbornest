@@ -2,43 +2,64 @@ package com.antevgproject.neighbornest.domain.association;
 
 import com.antevgproject.neighbornest.domain.building.Building;
 import com.antevgproject.neighbornest.domain.building.BuildingService;
+import com.antevgproject.neighbornest.domain.resident.Resident;
+import com.antevgproject.neighbornest.domain.resident.ResidentService;
+import com.antevgproject.neighbornest.domain.residentassociation.ResidentAssociation;
+import com.antevgproject.neighbornest.domain.residentassociation.ResidentAssociationRepository;
+import com.antevgproject.neighbornest.domain.user.role.RoleService;
 import com.antevgproject.neighbornest.infrastructure.validation.ValidationService;
 import jakarta.annotation.Resource;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import static com.antevgproject.neighbornest.constant.RoleConstants.MODERATOR;
+
 @Service
+@Slf4j
 public class AssociationService {
 
     @Resource
-    public BuildingService buildingService;
+    private BuildingService buildingService;
     @Resource
-    public AssociationMapper associationMapper;
+    private AssociationMapper associationMapper;
     @Resource
-    public AssociationRepository associationRepository;
+    private AssociationRepository associationRepository;
+    @Resource
+    private ResidentService residentService;
+    @Resource
+    private ResidentAssociationRepository residentAssociationRepository;
+    @Resource
+    private RoleService roleService;
 
-    public void registerNewAssociation(AssociationDto associationDto) {
+    public void registerNewAssociation(AssociationRegistration associationRegistration) {
 
-        validateAssociationDto(associationDto);
-        buildingService.validateBuildingByAssociationDto(associationDto);
+        validateAssociationDto(associationRegistration);
+        Building building = buildingService.registerNewBuilding(associationRegistration);
+        Association association = associationMapper.associationFromAssociationDto(associationRegistration);
+        association.setStatus("A");
 
-        Building building = buildingService.registerNewBuilding(associationDto);
-        Association association = associationMapper.associationFromAssociationDto(associationDto);
         association.setBuilding(building);
-        associationRepository.save(association);
+        Association savedAssociation = associationRepository.save(association);
+
+        Resident resident = residentService.findByUserId(associationRegistration.getUserId());
+
+        ResidentAssociation residentAssociation = new ResidentAssociation();
+        residentAssociation.setAssociation(savedAssociation);
+        residentAssociation.setResident(resident);
+
+        residentAssociation.setRole(roleService.finByName(MODERATOR));
+        residentAssociationRepository.save(residentAssociation);
     }
 
-    public void validateAssociationDto(AssociationDto associationDto) {
-        validateByName(associationDto.getName());
-        validateByRegNumber(associationDto.getRegNumber());
-        validateByEmail(associationDto.getEmail());
-        validateByPhone(associationDto.getPhone());
-
-        
-//        associationRepository.someMethod(associationDto.getName(), associationDto.getEmail(), associationDto.getRegNumber());
-//        iz repo berem list i ego uzhe po otdeljnosti validiruem, tk chem menshe zaprosov v DB tem luchwe.
+    public void validateAssociationDto(AssociationRegistration associationRegistration) {
+        validateByName(associationRegistration.getName());
+        validateByRegNumber(associationRegistration.getRegNumber());
+        validateByEmail(associationRegistration.getEmail());
+        validateByPhone(associationRegistration.getPhone());
     }
 
     private void validateByName(String name) {
+        log.debug("Validate by name...");
         boolean existByName = associationRepository.existByName(name);
         ValidationService.isExistByName(existByName);
     }

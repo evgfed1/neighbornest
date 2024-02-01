@@ -42,4 +42,8 @@ public class Association {
     @Column(name = "reg_number", nullable = false)
     private String regNumber;
 
+    @NotNull
+    @Column(name = "status", nullable = false, length = Integer.MAX_VALUE)
+    private String status;
+
 }

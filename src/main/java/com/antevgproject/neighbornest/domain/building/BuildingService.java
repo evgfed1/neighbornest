@@ -1,28 +1,27 @@
 package com.antevgproject.neighbornest.domain.building;
 
-import com.antevgproject.neighbornest.domain.association.AssociationDto;
+import com.antevgproject.neighbornest.domain.association.AssociationRegistration;
 import com.antevgproject.neighbornest.infrastructure.validation.ValidationService;
-import jakarta.annotation.Resource;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class BuildingService {
 
-    @Resource
-    public BuildingMapper buildingMapper;
-    @Resource
-    public BuildingRepository buildingRepository;
+    public final BuildingMapper buildingMapper;
+    public final BuildingRepository buildingRepository;
 
 
-    public Building registerNewBuilding(AssociationDto associationDto) {
-        Building building = buildingMapper.buildingFromAssociationDto(associationDto);
-        buildingRepository.save(building);
-        return building;
+    public Building registerNewBuilding(AssociationRegistration associationRegistration) {
+        validateBuildingByAssociationDto(associationRegistration);
+        Building building = buildingMapper.buildingFromAssociationDto(associationRegistration);
+        return buildingRepository.save(building);
     }
 
-    public void validateBuildingByAssociationDto(AssociationDto associationDto) {
-        validateByAddress(associationDto.getBuildingAddress());
-        validateByCadastral(associationDto.getBuildingCadastral());
+    public void validateBuildingByAssociationDto(AssociationRegistration associationRegistration) {
+        validateByAddress(associationRegistration.getBuildingAddress());
+        validateByCadastral(associationRegistration.getBuildingCadastral());
     }
 
     private void validateByAddress(String address) {
