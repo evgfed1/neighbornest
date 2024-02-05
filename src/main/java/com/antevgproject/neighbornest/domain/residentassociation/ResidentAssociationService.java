@@ -6,6 +6,8 @@ import com.antevgproject.neighbornest.domain.user.role.RoleService;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 import static com.antevgproject.neighbornest.constant.RoleConstants.MODERATOR;
 
 @Service
@@ -14,6 +16,8 @@ public class ResidentAssociationService {
     public ResidentAssociationRepository residentAssociationRepository;
     @Resource
     public RoleService roleService;
+    @Resource
+    public ResidentAssociationMapper residentAssociationMapper;
 
 
     public void setParameters(Association savedAssociation, Resident resident) {
@@ -23,4 +27,11 @@ public class ResidentAssociationService {
         residentAssociation.setRole(roleService.finByName(MODERATOR));
         residentAssociationRepository.save(residentAssociation);
     }
+
+    public List<UserActiveAssociationDto> getUserActiveAssociations(Integer userId) {
+        List<ResidentAssociation> residentAssociationList = residentAssociationRepository.findActiveUserAssociations(userId);
+
+        return residentAssociationMapper.toUserActiveAssociationsDto(residentAssociationList);
+    }
 }
+
