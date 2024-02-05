@@ -21,8 +21,7 @@ public interface AssociationRepository extends JpaRepository<Association, Intege
     @Query("select (count(a) > 0) from Association a where a.phone = ?1")
     boolean existByPhone(String phone);
 
-//    @Query("""
-//            select a from Association a
-//            where upper(a.name) = upper(?1) and upper(a.email) = upper(?2) and upper(a.regNumber) = upper(?3)""")
-//    List<Association> someMethod(String name, String email, String regNumber);
+    @Query("select a from Association a where a.status = ?1 order by a.id")
+    List<Association> findAllActiveAssociations(String status);
+
 }

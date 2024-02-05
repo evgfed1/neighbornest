@@ -4,11 +4,15 @@ import com.antevgproject.neighbornest.domain.building.Building;
 import com.antevgproject.neighbornest.domain.building.BuildingService;
 import com.antevgproject.neighbornest.domain.resident.Resident;
 import com.antevgproject.neighbornest.domain.resident.ResidentService;
+import com.antevgproject.neighbornest.domain.residentassociation.ResidentAssociationMapper;
 import com.antevgproject.neighbornest.domain.residentassociation.ResidentAssociationService;
+import com.antevgproject.neighbornest.domain.residentassociation.UserActiveAssociationDto;
 import com.antevgproject.neighbornest.infrastructure.validation.ValidationService;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 
 @Service
@@ -25,6 +29,9 @@ public class AssociationService {
     private ResidentService residentService;
     @Resource
     private ResidentAssociationService residentAssociationService;
+    @Resource
+    private ResidentAssociationMapper residentAssociationMapper;
+
 
     public void registerNewAssociation(AssociationRegistration associationRegistration) {
 
@@ -70,4 +77,13 @@ public class AssociationService {
         ValidationService.isExistByPhone(existByPhone);
     }
 
+
+    public List<ActiveAssociationsDto> getActiveAssociations() {
+        List<Association> associationList = associationRepository.findAllActiveAssociations("A");
+        return associationMapper.toActiveAssociationDto(associationList);
+    }
+
+    public List<UserActiveAssociationDto> getUserActiveAssociations(Integer userId) {
+        return residentAssociationService.getUserActiveAssociations(userId);
+    }
 }
