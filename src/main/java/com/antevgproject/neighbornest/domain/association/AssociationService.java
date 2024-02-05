@@ -6,6 +6,7 @@ import com.antevgproject.neighbornest.domain.resident.Resident;
 import com.antevgproject.neighbornest.domain.resident.ResidentService;
 import com.antevgproject.neighbornest.domain.residentassociation.ResidentAssociation;
 import com.antevgproject.neighbornest.domain.residentassociation.ResidentAssociationRepository;
+import com.antevgproject.neighbornest.domain.residentassociation.ResidentAssociationService;
 import com.antevgproject.neighbornest.domain.user.role.RoleService;
 import com.antevgproject.neighbornest.infrastructure.validation.ValidationService;
 import jakarta.annotation.Resource;
@@ -30,6 +31,8 @@ public class AssociationService {
     private ResidentAssociationRepository residentAssociationRepository;
     @Resource
     private RoleService roleService;
+    @Resource
+    private ResidentAssociationService residentAssociationService;
 
     public void registerNewAssociation(AssociationRegistration associationRegistration) {
 
@@ -43,12 +46,8 @@ public class AssociationService {
 
         Resident resident = residentService.findByUserId(associationRegistration.getUserId());
 
-        ResidentAssociation residentAssociation = new ResidentAssociation();
-        residentAssociation.setAssociation(savedAssociation);
-        residentAssociation.setResident(resident);
+        residentAssociationService.setParameters(savedAssociation, resident);
 
-        residentAssociation.setRole(roleService.finByName(MODERATOR));
-        residentAssociationRepository.save(residentAssociation);
     }
 
     public void validateAssociationDto(AssociationRegistration associationRegistration) {
