@@ -4,7 +4,6 @@ import com.antevgproject.neighbornest.domain.building.Building;
 import com.antevgproject.neighbornest.domain.building.BuildingService;
 import com.antevgproject.neighbornest.domain.resident.Resident;
 import com.antevgproject.neighbornest.domain.resident.ResidentService;
-import com.antevgproject.neighbornest.domain.residentassociation.ResidentAssociation;
 import com.antevgproject.neighbornest.domain.residentassociation.ResidentAssociationRepository;
 import com.antevgproject.neighbornest.domain.residentassociation.ResidentAssociationService;
 import com.antevgproject.neighbornest.domain.user.role.RoleService;
@@ -13,7 +12,6 @@ import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import static com.antevgproject.neighbornest.constant.RoleConstants.MODERATOR;
 
 @Service
 @Slf4j
@@ -27,10 +25,6 @@ public class AssociationService {
     private AssociationRepository associationRepository;
     @Resource
     private ResidentService residentService;
-    @Resource
-    private ResidentAssociationRepository residentAssociationRepository;
-    @Resource
-    private RoleService roleService;
     @Resource
     private ResidentAssociationService residentAssociationService;
 
