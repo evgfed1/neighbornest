@@ -21,12 +21,12 @@ public class AssociationController {
         log.info("Registration form : {}", associationRegistration);
         associationService.registerNewAssociation(associationRegistration);
     }
-    @GetMapping("/search")
+    @GetMapping("/search/all")
     public List<ActiveAssociationsDto> getAllActiveAssociations() {
         return associationService.getActiveAssociations();
     }
 
-    @GetMapping("/search2")
+    @GetMapping("/search/users")
     @Operation(summary = "Show all active user's associations")
     public List<UserActiveAssociationDto> getUserActiveAssociations(@RequestParam Integer userId) {
         return associationService.getUserActiveAssociations(userId);
