@@ -86,4 +86,6 @@ public class AssociationService {
     public List<UserActiveAssociationDto> getUserActiveAssociations(Integer userId) {
         return residentAssociationService.getUserActiveAssociations(userId);
     }
+
+
 }

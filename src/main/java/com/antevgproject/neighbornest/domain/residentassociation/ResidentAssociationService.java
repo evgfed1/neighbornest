@@ -29,8 +29,7 @@ public class ResidentAssociationService {
     }
 
     public List<UserActiveAssociationDto> getUserActiveAssociations(Integer userId) {
-        List<ResidentAssociation> residentAssociationList = residentAssociationRepository.findActiveUserAssociations(userId);
-
+        List<ResidentAssociation> residentAssociationList = residentAssociationRepository.findActiveAssociationsByUserId(userId, "A");
         return residentAssociationMapper.toUserActiveAssociationsDto(residentAssociationList);
     }
 }
